@@ -15,7 +15,8 @@ class App {
         //     });
         // });
         this.express.use('/graphql', graphqlHTTP({
-            schema: schema_1.default
+            schema: schema_1.default,
+            graphiql: process.env.NODE_ENV === 'development'
         }));
     }
 }

@@ -23,10 +23,21 @@ const typeDefs = `
     type Query {
         AllUsers: [User!]!
     }
+
+    type Mutation {
+        createUser(name:String!, email:String!) : User
+    }
 `;
 const resolvers = {
     Query: {
         AllUsers: () => users
+    },
+    Mutation: {
+        createUser: (parent, args) => {
+            let newUser = Object.assign({ id: users.length + 1 }, args);
+            users.push(newUser);
+            return newUser;
+        }
     }
 };
 exports.default = graphql_tools_1.makeExecutableSchema({ typeDefs, resolvers });

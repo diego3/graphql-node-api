@@ -21,7 +21,8 @@ class App {
         // });
 
         this.express.use('/graphql', graphqlHTTP({
-            schema: schema
+            schema: schema,
+            graphiql: process.env.NODE_ENV === 'development' 
         }));
     }
 
