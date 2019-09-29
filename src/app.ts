@@ -1,8 +1,24 @@
-console.log("Hello world");
+import * as express from 'express';
 
-let a = 20;
 
-let b = 40;
+class App {
 
-let c: number = 45.6;
+    public express: express.Application;
 
+
+    constructor(){
+        this.express = express();
+        this.middleware();
+    }
+
+    private middleware():void {
+        this.express.use('/hello', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            res.send({
+                hello: "Hello World!"
+            });
+        });
+    }
+
+}
+
+export default new App().express;
